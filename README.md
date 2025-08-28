@@ -1,4 +1,4 @@
-https://github.com/Amolankit/learn-cicd-starter/actions/workflows/.github/workflows/badge.svg
+https://github.com/Amolankit/learn-cicd-starter/actions/workflows/ci.yml/badge.svg
 
 # learn-cicd-starter (Notely)
 
