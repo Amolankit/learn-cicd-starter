@@ -1,10 +1,14 @@
+name: cd
+
 on:
   push:
     branches: [main]
 
 jobs:
-  Deploy:
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
+
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -15,4 +19,18 @@ jobs:
           go-version: '1.23.0'
 
       - name: Build app
-        run: scripts/buildprod.sh
+        run: ./scripts/buildprod.sh
+
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Use gcloud CLI
+        run: gcloud info
+
+      - name: Build and push Docker image
+        run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-470423/notely-ar-repo/IMAGE:TAG .
