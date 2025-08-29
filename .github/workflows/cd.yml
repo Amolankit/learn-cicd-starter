@@ -33,4 +33,5 @@ jobs:
         run: gcloud info
 
       - name: Build and push Docker image
-        run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-470423/notely-ar-repo/IMAGE:TAG .
+        run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-470423/notely-ar-repo/app:latest .
+        
